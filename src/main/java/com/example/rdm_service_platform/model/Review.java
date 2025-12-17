@@ -1,7 +1,5 @@
-
 package com.example.rdm_service_platform.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,40 +8,28 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-
-
-
 @Entity
-@Table(name = "companies")
-@Setter
+@Table(name = "reviews")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Company {
-
+@Builder
+public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String name;
-
-    @Column(nullable = false)
-    private String address;
-
-
-    @Column(nullable = false)
-    private String phoneNumber;
-
     @OneToOne
-    @JoinColumn(name = "owner_id")
-    private User owner;
+    @JoinColumn(name = "request_id")
+    private ServiceRequest serviceRequest;
 
-    
-
+    private int rating;
+    private String comment;
 }
